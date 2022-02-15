@@ -17,7 +17,7 @@
       })
       console.log(formDataJson);
 
-      doRequest('php/action.php?action=userLoginCheck',formDataJson,(res)=>{
+      doRequest('../.php/action.php?action=userLoginCheck',formDataJson,(res)=>{
         console.log(res);
         results = JSON.parse(res);
         refreshLoggedinUserData();

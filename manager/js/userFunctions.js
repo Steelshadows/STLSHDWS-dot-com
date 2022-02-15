@@ -1,5 +1,5 @@
 function userLogout(){
-    doRequest('php/action.php?action=userLogout',(res)=>{
+    doRequest('../.php/action.php?action=userLogout',(res)=>{
         sessionStorage.removeItem("uid")
         sessionStorage.removeItem("username")
         sessionStorage.removeItem("alias")
@@ -17,7 +17,7 @@ function refreshLoggedinUserData(callback){
     sessionStorage.removeItem("uid");
     sessionStorage.removeItem("username");
     sessionStorage.removeItem("role_ids");
-    doRequest('php/action.php?action=getUserFromSession',(res)=>{
+    doRequest('../.php/action.php?action=getUserFromSession',(res)=>{
         res = JSON.parse(res);
         if(res.success){
             sessionStorage.setItem("alias",res.data.alias);

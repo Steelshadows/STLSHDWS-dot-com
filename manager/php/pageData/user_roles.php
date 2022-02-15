@@ -1,15 +1,11 @@
 <?php
-    require_once('../class/DB_class.php');
+
+    require_once('../../../.php/class/DB_class.php');
     $db_connection = new db_connection();
 
-    $urls_db = $db_connection->fetchAllQuery("SELECT * FROM `pages` WHERE 1");
+    $urls_db = $db_connection->fetchAllQuery("SELECT `uid`,`username`,`email`,`alias`,`role_ids` FROM `users` ORDER BY `uid`");
 ?>
 
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="js/dataFunctions.js"></script>
-    <script src="js/pageFunctions.js"></script>
-    <script src="js/managerFunctions.js"></script> -->
     <script type="temp">    
     document.title = "Roles Manager";
     function searchUsers(){
@@ -20,7 +16,7 @@
     <div class="container bg-white">
         <div class="row">
             <div class="row col-12 action_buttons">
-                <input class="col-10 m-2" type="text">
+                <input class="col-5 m-2" type="text">
                 <button class="col-2 m-2" onclick="searchUsers()">search</button>
             </div>
             <div class="col-6">
@@ -34,7 +30,7 @@
                                     ?>
                                         <div class="row">
                                             <label class="col-3"><?=$key?>:</label>
-                                            <label id="<?=$key?>-<?=$item["id"]?>"class="col-9"><?=$value?></label>
+                                            <label id="<?=$key?>-<?=$item["uid"]?>"class="col-9"><?=$value?></label>
                                         </div>
                                     <?php
                                 }
