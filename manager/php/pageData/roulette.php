@@ -12,6 +12,7 @@
     <script src="js/managerFunctions.js"></script> -->
     <script type="temp">    
     document.title = "Roulette Manager";
+    loadClickEvents();
     </script>
 
     <div class="container bg-white">
@@ -29,15 +30,15 @@
                                 foreach($item as $key => $value){
                                     ?>
                                         <div class="row">
-                                            <label class="col-3"><?=$key?>:</label>
-                                            <label id="<?=$key?>-<?=$item["id"]?>"class="col-9"><?=$value?></label>
+                                            <label class="col-3"><?php echo $key;?>:</label>
+                                            <label id="<?php echo $key;?>-<?php echo $item["id"];?>"class="col-9"><?php echo $value;?></label>
                                         </div>
                                     <?php
                                 }
                             ?>
                             <div class="row">
-                                <button class="col-3 m-2" onclick="editFramePage(<?=$item['id']?>)">edit</button>
-                                <button class="col-3 m-2" onclick="previewFramePage(<?=$item['id']?>)">preview</button>
+                                <button class="col-3 m-2" onclick="editFramePage(<?php echo $item['id'];?>)">edit</button>
+                                <button class="col-3 m-2" onclick="previewFramePage(<?php echo $item['id'];?>)">preview</button>
                             </div>
                         </div>
                     <?php

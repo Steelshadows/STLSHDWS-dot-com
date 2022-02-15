@@ -7,17 +7,15 @@
 ?>
 
     <script type="temp">    
-    document.title = "Roles Manager";
-    function searchUsers(){
-        console.log(hoi);
-    }
+    document.title = "Roles Manager";    
+    loadClickEvents();
     </script>
 
     <div class="container bg-white">
         <div class="row">
-            <div class="row col-12 action_buttons">
+            <div class="row col-12 action_buttons d-none"> <!--potential searchbar, if there is enough time-->
                 <input class="col-5 m-2" type="text">
-                <button class="col-2 m-2" onclick="searchUsers()">search</button>
+                <button class="col-2 m-2 clickEvent noArg" data-function="searchUsers">search</button>
             </div>
             <div class="col-6">
                 <div class="all_urls">
@@ -29,12 +27,15 @@
                                 foreach($item as $key => $value){//creates html for each selected database collumn
                                     ?>
                                         <div class="row">
-                                            <label class="col-3"><?=$key?>:</label>
-                                            <label id="<?=$key?>-<?=$item["uid"]?>"class="col-9"><?=$value?></label>
+                                            <label class="col-3"><?php echo $key;?>:</label>
+                                            <label id="<?php echo $key;?>-<?php echo $item["uid"];?>"class="col-9"><?php echo $value;?></label>
                                         </div>
                                     <?php
                                 }
                             ?>
+                            <div class="row">
+                                <button class="submitEdits clickEvent arg" class="col-3 m-2" data-function="select_edit_user" data-args="{'id':'<?php echo $item["uid"];?>'}">edit this user</button>
+                            </div>
                         </div>
                     <?php
                         }
@@ -43,52 +44,33 @@
 </div>
             </div>
             <div class="col-6">
-                <div class="url_editor p-3 d-none">
-                    <div class="row p-1">
-                        <label class="col-3">id:</label>
-                        <label id="edit_id"class="col-9"></label>
-                    </div>
-                    
-                    <div class="row p-1">
-                        <label class="col-3">url:</label>
-                        <input type="text" id="edit_url"class="col-9"></input>
-                    </div>
-                        
-                    <div class="row p-1">
-                        <label class="col-3">duration:</label>
-                        <input type="number" id="edit_duration"class="col-9"></input>
-                    </div>
-                    
-                    <div class="row p-1">
-                        <label class="col-3">pageInfo:</label>
-                        <textarea id="edit_pageInfo"class="col-9"></textarea>
-                    </div>
-                        
-                    <div class="row p-1">
-                        <label class="col-3">date:</label>
-                        <label id="edit_date" class="col-9"></label>
-                    </div>
-                    <div class="row p-1">
-                        <label class="col-3">status:</label>
-                        <div id="edit_status" class="row col-9">
-                            <div class="row align-items-center">
-                                <input id="status_radio_active" type="radio" class="col-1" name="status" value="active">
-                                <label class="col-11">active</label>
-                            </div>
-                            <div class="row align-items-center">
-                                <input id="status_radio_hidden" type="radio" class="col-1" name="status" value="hidden">
-                                <label class="col-11">hidden</label>
-                            </div>
+                <div class="url_editor p-3">
+                    <div class="row p-3">    
+                        <div class="row">
+                            <label class="col-3">uid:</label>
+                            <label id="uid" class="col-9">28</label>
                         </div>
-                        
+                        <div class="row">
+                            <label class="col-3">username:</label>
+                            <label id="username" class="col-9">STLSHDWS</label>
+                        </div>
+                        <div class="row">
+                            <label class="col-3">email:</label>
+                            <label id="email" class="col-9"></label>
+                        </div>
+                        <div class="row">
+                            <label class="col-3">alias:</label>
+                            <label id="alias" class="col-9">steel</label>
+                        </div>
+                        <div class="row">
+                            <label class="col-3">role_ids:</label>
+                            <label id="role_ids" class="col-9">1,2</label>
+                        </div>
                     </div>
                     <div class="row p-1">
-                        <button class="col-3 m-2" onclick="submitEditFramePage()">submit</button>
+                        <button class="submitEdits clickEvent noArg" class="col-3 m-2" data-function="submitUserRoles">submit</button>
                         
                     </div>
-                </div>
-                <div class="preview_box p-3 d-none">
-                    <iframe scrolling="no" id="preview_frame" class="preview_frame" frameborder="0">
                 </div>
             </div>
         </div>
