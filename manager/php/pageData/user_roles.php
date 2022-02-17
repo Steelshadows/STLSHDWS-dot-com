@@ -6,10 +6,8 @@
     $users = $db_connection->fetchAllQuery("SELECT `uid`,`username`,`email`,`alias`,`role_ids` FROM `users` ORDER BY `uid`");
     $roles = $db_connection->fetchAllQuery("SELECT * FROM `roles`");
 ?>
-
+    <div id="pageTitle" data-pagetitle="Roles Manager"></div>
     <script type="temp">    
-    document.title = "Roles Manager";    
-    loadClickEvents();
     </script>
 
     <div class="container bg-white">
@@ -64,7 +62,7 @@
                             <label id="view_alias" class="col-9"></label>
                         </div>
                         <div class="row">
-                            <label class="col-3">role_ids:</label>
+                            <label class="col-3">role ids:</label>
                             <label id="edit_role_ids" class="col-9"></label>
                         </div>
                     </div>
@@ -81,7 +79,7 @@
                     ?>
                         <div class="row">
                             <div class="col-1 p-1">
-                                <input type="checkbox" class="clickEvent arg" data-function="addRole" data-roleid="<?php echo $item["role_id"];?>" data-args='{"role_id":"<?php echo $item["role_id"];?>"}'>
+                                <input type="checkbox" class="clickEvent arg" <?php echo ($item["role_id"] == 1)?"disabled":"";?> data-function="addRole" data-roleid="<?php echo $item["role_id"];?>" data-args='{"role_id":"<?php echo $item["role_id"];?>"}'>
                             </div>
                             <div class="col">
                                 <label><?php echo $item["role_name"];?></label>

@@ -62,7 +62,7 @@ function setSessionUser($uid){
     $db_connection = new db_connection();
     
     if(is_int( $uid )){
-        $sql = "SELECT `uid`,`username`,`alias`,`image`,`bio`,`email` FROM `users` WHERE `uid` = ?";
+        $sql = "SELECT `uid`,`username`,`alias`,`image`,`bio`,`email`,`role_ids` FROM `users` WHERE `uid` = ?";
         $params = [$uid];
         $userData = $db_connection->fetchQuery($sql,$params);
         $_SESSION['userData']=$userData;
@@ -217,5 +217,27 @@ function getUserPermission($allowed_roles = [1]){
         }
     }
     return $access;
+}
+function submitUserRoles($data){
+    if(getUserPermission([1])){
+
+        $db_connection = new db_connection();
+
+        $uid = $data["uid"];
+        $role_ids = $data["role_ids"];
+        
+        $success = $db_connection->Query(
+            "UPDATE `users` SET `role_ids`= ? WHERE `uid` = ?",
+            [$role_ids,$uid]
+        );
+        if($success == true){
+            return ["success"=>$success,"msg"=>"edited_roles_successfully"];
+        }else{
+            return ["success"=>$success,"error"=>"error_updating_roles"];
+        }
+        
+    }else{
+        return ["success"=>false,"error"=>"no_permission"];
+    }
 }
 ?>

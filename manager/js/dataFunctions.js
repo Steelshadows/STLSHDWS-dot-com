@@ -29,7 +29,7 @@ function doRequest(url,arg1,arg2){
     xhttp.setRequestHeader('Content-Type', 'application/JSON');
     xhttp.send(post);
 }
-function goToUrl(url,data){
+function goToUrl(url,data,callback){
     console.log(data);
     getStr = "";
     if(!!data){
@@ -55,17 +55,22 @@ function goToUrl(url,data){
         });
         updateUserGUI();
         document.location.hash += getStr;
+
+        if (typeof callback == "function")callback();
     });
 }
 function goToPage(url,data){
     $urls = {
-        "home":"php/pageData/home.php",
-        "login":"php/pageData/login.php",
-        "roulette":"php/pageData/roulette.php",
-        "roles":"php/pageData/user_roles.php",
+        "home":{"url":"php/pageData/home.php"},
+        "login":{"url":"php/pageData/login.php"},
+        "roulette":{"url":"php/pageData/roulette.php"},
+        "roles":{"url":"php/pageData/user_roles.php","init":"initRolesManager"},
     };
     document.location.hash = url;
-    goToUrl($urls[url],data);
+    if (typeof window[$urls[url]["init"]] == "function")callback = window[$urls[url]["init"]];
+    else callback = initDefault;
+
+    goToUrl($urls[url]["url"],data,callback);
 }
 function reloadPage(){
     if(document.location.hash != "undefined" && document.location.hash != "#undefined" && document.location.hash != ""){
