@@ -62,7 +62,7 @@ function goToUrl(url,data,callback){
 function goToPage(url,data){
     $urls = {
         "home":{"url":"php/pageData/home.php"},
-        "login":{"url":"php/pageData/login.php"},
+        "login":{"url":"php/pageData/login.php","init":"initLoginManager"},
         "roulette":{"url":"php/pageData/roulette.php"},
         "roles":{"url":"php/pageData/user_roles.php","init":"initRolesManager"},
     };
@@ -79,7 +79,7 @@ function reloadPage(){
         url = url.split("#")[1];
         goToPage(url,data);
     }else{
-        goToPage("posts");
+        goToPage("home");
     }
 }
 function loadClickEvents(){

@@ -25,7 +25,7 @@
 <script src="js/ckeditor/ckeditor.js"></script>
 <script>
     $( document ).ready(function() {
-        loadClicks();
+        initDefault();
     });
 </script>
 
