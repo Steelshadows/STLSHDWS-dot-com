@@ -18,20 +18,21 @@
 <script src="js/dataFunctions.js"></script>
 <script src="js/notiFunctions.js"></script>
 <script src="js/userFunctions.js"></script>
+<script src="js/initFunctions.js"></script>
 <script src="js/managerRouletteFunctions.js"></script>
 <script src="js/managerRolesFunctions.js"></script>
 
 <script src="js/ckeditor/ckeditor.js"></script>
 <script>
     $( document ).ready(function() {
-        loadClicks();
+        initDefault();
     });
 </script>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" onclick="goToPage('posts')">STLSHDWS Manager</a>
+    <a class="navbar-brand" onclick="goToPage('home')">STLSHDWS Manager</a>
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
